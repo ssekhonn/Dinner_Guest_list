@@ -108,3 +108,15 @@ def show_guest_list():
 
     for i, guest in enumerate(guests, start=1):
         print(f"{i}. {guest['name']} - {guest['rsvp']}")
+
+
+def search_guest(name):
+
+    name = format_name(name)
+
+    for guest in guests:
+        if guest["name"] == name:
+            print(f"Found: {guest['name']} - {guest['rsvp']}")
+            return
+
+    print("Guest not found.")
