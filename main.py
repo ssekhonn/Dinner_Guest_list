@@ -226,3 +226,7 @@ def main():
 
         elif choice == "10":
             break
+
+
+if __name__ == "__main__":
+    main()
