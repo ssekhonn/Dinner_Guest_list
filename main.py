@@ -98,3 +98,13 @@ def remove_guest(name):
 def sort_guests():
     guests.sort(key=lambda g: g["name"])
     print("Guests sorted alphabetically.")
+
+
+def show_guest_list():
+
+    if not guests:
+        print("No guests yet.")
+        return
+
+    for i, guest in enumerate(guests, start=1):
+        print(f"{i}. {guest['name']} - {guest['rsvp']}")
