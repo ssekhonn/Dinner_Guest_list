@@ -38,3 +38,7 @@ PSEUDOCODE
    - assign guests to tables
    - display tables
 """
+
+
+def format_name(name):
+    return name.strip().title()
