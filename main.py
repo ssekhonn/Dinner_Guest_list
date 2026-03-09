@@ -52,6 +52,11 @@ def add_guest(name, rsvp):
         print("Invalid name.")
         return
 
+    # Name validation: letters and spaces only
+    if not name.replace(" ", "").isalpha():
+        print("Invalid name. Please enter letters only.")
+        return
+
     for guest in guests:
         if guest["name"] == name:
             print("Guest already exists.")
@@ -72,10 +77,8 @@ def modify_guest(old_name, new_name, new_rsvp):
 
     for guest in guests:
         if guest["name"] == old_name:
-
             guest["name"] = new_name
             guest["rsvp"] = new_rsvp
-
             print("Guest updated.")
             return
 
@@ -158,18 +161,23 @@ def show_seating_plan():
 
 def choose_rsvp():
 
-    print("1 Attending")
-    print("2 Not Attending")
-    print("3 Maybe")
+    while True:
 
-    choice = input("Choose RSVP: ")
+        print("\nRSVP Status:")
+        print("1 Attending")
+        print("2 Not Attending")
+        print("3 Maybe")
 
-    if choice == "1":
-        return "Attending"
-    elif choice == "2":
-        return "Not Attending"
-    else:
-        return "Maybe"
+        choice = input("Choose RSVP option: ").strip()
+
+        if choice == "1":
+            return "Attending"
+        elif choice == "2":
+            return "Not Attending"
+        elif choice == "3":
+            return "Maybe"
+        else:
+            print("Invalid option. Please enter 1, 2, or 3.")
 
 
 def main():
@@ -188,7 +196,11 @@ def main():
         print("9 Show Seating Plan")
         print("10 Exit")
 
-        choice = input("Choose option: ")
+        choice = input("Choose option: ").strip()
+
+        if not choice.isdigit():
+            print("Invalid input. Please enter a number from the menu.")
+            continue
 
         if choice == "1":
             name = input("Enter name: ")
@@ -196,10 +208,22 @@ def main():
             add_guest(name, rsvp)
 
         elif choice == "2":
-            old_name = input("Current name: ")
-            new_name = input("New name: ")
-            rsvp = choose_rsvp()
-            modify_guest(old_name, new_name, rsvp)
+
+            old_name = input("Enter the guest's current name: ")
+            old_name = format_name(old_name)
+
+            found = False
+
+            for guest in guests:
+                if guest["name"] == old_name:
+                    found = True
+
+            if not found:
+                print("Guest not found.")
+            else:
+                new_name = input("Enter the new name: ")
+                rsvp = choose_rsvp()
+                modify_guest(old_name, new_name, rsvp)
 
         elif choice == "3":
             name = input("Enter name to remove: ")
