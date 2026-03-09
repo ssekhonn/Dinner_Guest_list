@@ -154,3 +154,19 @@ def show_seating_plan():
             print(guest["name"])
 
         table += 1
+
+
+def choose_rsvp():
+
+    print("1 Attending")
+    print("2 Not Attending")
+    print("3 Maybe")
+
+    choice = input("Choose RSVP: ")
+
+    if choice == "1":
+        return "Attending"
+    elif choice == "2":
+        return "Not Attending"
+    else:
+        return "Maybe"
