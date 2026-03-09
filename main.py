@@ -105,9 +105,13 @@ def sort_guests():
 
 def show_guest_list():
 
+    print("\nGuest List")
+
     if not guests:
         print("No guests yet.")
         return
+
+    print(f"Total Guests: {len(guests)}")
 
     for i, guest in enumerate(guests, start=1):
         print(f"{i}. {guest['name']} - {guest['rsvp']}")
@@ -133,13 +137,22 @@ def show_invitations():
 
 def count_attending_guests():
 
-    count = 0
+    attending = 0
 
     for guest in guests:
         if guest["rsvp"] == "Attending":
-            count += 1
+            attending += 1
 
-    print(f"Guests attending: {count}")
+    total = len(guests)
+
+    if total == 0:
+        print("No guests yet.")
+        return
+
+    percentage = (attending / total) * 100
+
+    print(f"Guests attending: {attending}")
+    print(f"Attendance rate: {percentage:.1f}%")
 
 
 def show_seating_plan():
@@ -181,6 +194,9 @@ def choose_rsvp():
 
 
 def main():
+
+    print("Welcome to the Guest Manager!")
+    show_guest_list()  # NEW FEATURE: show list on startup
 
     while True:
 
