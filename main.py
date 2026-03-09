@@ -137,3 +137,20 @@ def count_attending_guests():
             count += 1
 
     print(f"Guests attending: {count}")
+
+
+def show_seating_plan():
+
+    table_size = 3
+    table = 1
+
+    for i in range(0, len(guests), table_size):
+
+        print(f"\nTable {table}")
+
+        table_guests = guests[i:i+table_size]
+
+        for guest in table_guests:
+            print(guest["name"])
+
+        table += 1
