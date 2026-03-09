@@ -63,3 +63,20 @@ def add_guest(name, rsvp):
     })
 
     print(f"{name} added successfully.")
+
+
+def modify_guest(old_name, new_name, new_rsvp):
+
+    old_name = format_name(old_name)
+    new_name = format_name(new_name)
+
+    for guest in guests:
+        if guest["name"] == old_name:
+
+            guest["name"] = new_name
+            guest["rsvp"] = new_rsvp
+
+            print("Guest updated.")
+            return
+
+    print("Guest not found.")
