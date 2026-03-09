@@ -80,3 +80,16 @@ def modify_guest(old_name, new_name, new_rsvp):
             return
 
     print("Guest not found.")
+
+
+def remove_guest(name):
+
+    name = format_name(name)
+
+    for guest in guests:
+        if guest["name"] == name:
+            guests.remove(guest)
+            print("Guest removed.")
+            return
+
+    print("Guest not found.")
