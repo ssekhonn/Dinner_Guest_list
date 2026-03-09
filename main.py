@@ -42,3 +42,24 @@ PSEUDOCODE
 
 def format_name(name):
     return name.strip().title()
+
+
+def add_guest(name, rsvp):
+
+    name = format_name(name)
+
+    if not name:
+        print("Invalid name.")
+        return
+
+    for guest in guests:
+        if guest["name"] == name:
+            print("Guest already exists.")
+            return
+
+    guests.append({
+        "name": name,
+        "rsvp": rsvp
+    })
+
+    print(f"{name} added successfully.")
