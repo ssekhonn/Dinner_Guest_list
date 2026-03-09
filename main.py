@@ -126,3 +126,14 @@ def show_invitations():
 
     for guest in guests:
         print(f"Dear {guest['name']}, you are invited to dinner!")
+
+
+def count_attending_guests():
+
+    count = 0
+
+    for guest in guests:
+        if guest["rsvp"] == "Attending":
+            count += 1
+
+    print(f"Guests attending: {count}")
