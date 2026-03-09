@@ -120,3 +120,9 @@ def search_guest(name):
             return
 
     print("Guest not found.")
+
+
+def show_invitations():
+
+    for guest in guests:
+        print(f"Dear {guest['name']}, you are invited to dinner!")
