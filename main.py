@@ -170,3 +170,59 @@ def choose_rsvp():
         return "Not Attending"
     else:
         return "Maybe"
+
+
+def main():
+
+    while True:
+
+        print("\nGuest Manager")
+        print("1 Add Guest")
+        print("2 Modify Guest")
+        print("3 Remove Guest")
+        print("4 Sort Guests")
+        print("5 Show Guest List")
+        print("6 Search Guest")
+        print("7 Show Invitations")
+        print("8 Count Attending Guests")
+        print("9 Show Seating Plan")
+        print("10 Exit")
+
+        choice = input("Choose option: ")
+
+        if choice == "1":
+            name = input("Enter name: ")
+            rsvp = choose_rsvp()
+            add_guest(name, rsvp)
+
+        elif choice == "2":
+            old_name = input("Current name: ")
+            new_name = input("New name: ")
+            rsvp = choose_rsvp()
+            modify_guest(old_name, new_name, rsvp)
+
+        elif choice == "3":
+            name = input("Enter name to remove: ")
+            remove_guest(name)
+
+        elif choice == "4":
+            sort_guests()
+
+        elif choice == "5":
+            show_guest_list()
+
+        elif choice == "6":
+            name = input("Search guest: ")
+            search_guest(name)
+
+        elif choice == "7":
+            show_invitations()
+
+        elif choice == "8":
+            count_attending_guests()
+
+        elif choice == "9":
+            show_seating_plan()
+
+        elif choice == "10":
+            break
