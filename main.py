@@ -93,3 +93,8 @@ def remove_guest(name):
             return
 
     print("Guest not found.")
+
+
+def sort_guests():
+    guests.sort(key=lambda g: g["name"])
+    print("Guests sorted alphabetically.")
