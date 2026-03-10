@@ -44,7 +44,7 @@ def format_name(name):
     return name.strip().title()
 
 
-def add_guest(name, rsvp):
+def add_guest(name, rsvp):  # adds a 2 parameter function for name and rsvp status
 
     name = format_name(name)
 
@@ -53,16 +53,18 @@ def add_guest(name, rsvp):
         return
 
     # Name validation: letters and spaces only
+    # (" ", "").isalpha means it will remove spaces and check if the remaining characters are letters
     if not name.replace(" ", "").isalpha():
         print("Invalid name. Please enter letters only.")
         return
 
-    for guest in guests:
+    for guest in guests:  # guest is a variable that represents each guest in the guests list. It checks if the name of the guest matches the name being added. If it does, it prints a message and returns without adding the guest.
         if guest["name"] == name:
             print("Guest already exists.")
             return
 
-    guests.append({
+    guests.append({  # adds a new guest to the guests list. It creates a dictionary with the keys "name" and "rsvp" and assigns the values of the name and rsvp parameters passed to the function.
+        # this is a key-value pair in the dictionary. The key is "name" and the value is the formatted name of the guest.
         "name": name,
         "rsvp": rsvp
     })
@@ -99,6 +101,7 @@ def remove_guest(name):
 
 
 def sort_guests():
+    # key=lambda g: g this means that the sorting will be based on the "name" key of each guest dictionary. The lambda function takes a guest dictionary as input and returns the value of the "name" key, which is used for sorting.
     guests.sort(key=lambda g: g["name"])
     print("Guests sorted alphabetically.")
 
@@ -111,9 +114,12 @@ def show_guest_list():
         print("No guests yet.")
         return
 
+    # len means length, it counts the number of guests in the guests list and prints it.
     print(f"Total Guests: {len(guests)}")
 
+    # i is index, guest is the guest dictionary, enumerate is a built-in function that adds a counter to an iterable and returns it as an enumerate object. start=1 means that the counter will start from 1 instead of 0. This allows us to display the guest list with numbers starting from 1.
     for i, guest in enumerate(guests, start=1):
+        # in short- this line prints the index (i), the name of the guest (guest['name']), and their RSVP status (guest['rsvp']) in a formatted string. The output will look like "1. John Doe - Attending" for each guest in the list.
         print(f"{i}. {guest['name']} - {guest['rsvp']}")
 
 
@@ -152,7 +158,7 @@ def count_attending_guests():
     percentage = (attending / total) * 100
 
     print(f"Guests attending: {attending}")
-    print(f"Attendance rate: {percentage:.1f}%")
+    print(f"Attendance rate: {percentage:.2f}%")
 
 
 def show_seating_plan():
@@ -160,10 +166,11 @@ def show_seating_plan():
     table_size = 3
     table = 1
 
-    for i in range(0, len(guests), table_size):
+    for i in range(0, len(guests), table_size):  # in short - this line creates a loop that iterates through the guests list in steps of table_size (which is 3). The range function generates a sequence of numbers starting from 0 up to the length of the guests list, with a step of table_size. This allows us to group guests into tables of 3. For example, if there are 10 guests, the loop will run with i values of 0, 3, 6, and 9, effectively creating groups of guests for each table.
 
         print(f"\nTable {table}")
 
+        # this line creates a slice of the guests list from index i to i+table_size. This means it will take a group of guests for the current table. For example, if i is 0 and table_size is 3, it will take guests[0:3], which includes the first three guests. If i is 3, it will take guests[3:6], which includes the next three guests, and so on.
         table_guests = guests[i:i+table_size]
 
         for guest in table_guests:
