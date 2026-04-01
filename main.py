@@ -275,5 +275,6 @@ def main():
             break
 
 
+# this line checks if the script is being run directly (as the main program) rather than imported as a module in another script. If this condition is true, it calls the main() function to start the program.
 if __name__ == "__main__":
     main()
